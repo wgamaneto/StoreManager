@@ -1,48 +1,59 @@
 const productService = require('../services/product.service');
 
-const getAll = async (_req, res) => {
-  const { message } = await productService.getAll();
-  res.status(200).json(message);
-};
+const getProduct = async (_req, res) => {
+  const { type, message } = await productService.getProduct();
 
-const getById = async (req, res) => {
-  const { id } = req.params;
-  const { type, message } = await productService.getById(id);
-  if (type) return res.status(404).json({ message });
-  res.status(200).json(message);
-};
-
-const create = async (req, res) => {
-  const { type, message } = await productService.create(req.body);
   if (type) return res.status(type).json({ message });
-  return res.status(201).json(message);
+
+  return res.status(200).json(message);
 };
 
-const update = async (req, res) => {
+const getProductById = async (req, res) => {
   const { id } = req.params;
-  const { type, message } = await productService.update(id, req.body);
+  const { type, message } = await productService.getProductById(id);
   if (type) return res.status(type).json({ message });
-  res.status(200).json(message);
+  return res.status(200).json(message);
 };
 
-const remove = async (req, res) => {
-  const { id } = req.params;
-  const { type, message } = await productService.remove(id);
-  if (type) return res.status(type).json({ message });
-  return res.status(204).json();
-};
-
-const filterByName = async (req, res) => {
+const getProductByName = async (req, res) => {
   const { q } = req.query;
-  const { message } = await productService.filterByName(q);
+  if (q === '') {
+    const { message } = await productService.getProduct();
+    return res.status(200).json(message);
+  }
+
+  const { type, message } = await productService.getProductByName(q);
+  if (type) return res.status(type).json({ message });
+  return res.status(200).json(message);
+};
+
+const insertProduct = async (req, res) => {
+  const { name } = req.body;
+  const { type, message } = await productService.insertProduct(name);
+  if (type) return res.status(type).json({ message });
+  res.status(201).json(message);
+};
+
+const updateProduct = async (req, res) => {
+  const { name } = req.body;
+  const { id } = req.params;
+  const { type, message } = await productService.updateProduct(id, name);
+  if (type) return res.status(type).json({ message });
   res.status(200).json(message);
+};
+
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await productService.deleteProduct(id);
+  if (type) return res.status(type).json({ message });
+  res.status(204).end();
 };
 
 module.exports = {
-  getAll,
-  getById,
-  create,
-  update,
-  remove,
-  filterByName,
+  getProduct,
+  getProductById,
+  getProductByName,
+  insertProduct,
+  updateProduct,
+  deleteProduct,
 };

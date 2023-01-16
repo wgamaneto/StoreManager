@@ -4,8 +4,8 @@ const { validationProduct } = require('../middlewares/validationProduct');
 
 const productRouter = express.Router();
 
+productRouter.post('/', validationProduct, productController.insertProduct);
 productRouter.get('/', productController.getProduct);
 productRouter.get('/:id', productController.getProductById);
-productRouter.post('/', validationProduct, productController.insertProduct);
 
 module.exports = productRouter;
