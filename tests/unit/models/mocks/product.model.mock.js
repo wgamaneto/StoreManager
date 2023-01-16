@@ -1,4 +1,4 @@
-const productControllerAll = [
+const productModelMock = [
   {
     "id": 1,
     "name": "Martelo de Thor"
@@ -11,12 +11,7 @@ const productControllerAll = [
     "id": 3,
     "name": "Escudo do Capitão América"
   }
-];
-
-const productControllerById = {
-  "id": 1,
-  "name": "Martelo de Thor"
-};
+]
 
 const productSearchByName = [
   {
@@ -25,9 +20,7 @@ const productSearchByName = [
   }
 ]
 
-
 module.exports = {
-  productControllerAll,
-  productControllerById,
+  productModelMock,
   productSearchByName,
 };
