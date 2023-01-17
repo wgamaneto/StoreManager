@@ -46,7 +46,7 @@ describe('teste controller', function () {
   it('recuperar pelo id', async function () {
     sinon.stub(productService, 'getProductById').resolves({ type: null, message: productControllerById });
 
-    const req = { params: { id: 1 } }; //Precisa fazer, mesmo que não "chame".
+    const req = { params: { id: 1 } };
     const res = {};
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();

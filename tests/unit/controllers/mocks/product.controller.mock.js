@@ -13,10 +13,6 @@ const productControllerAll = [
   }
 ];
 
-const productToUpdate = {
-  "name": "Novo Produto Atualizado"
-}
-
 const productControllerById = {
   "id": 1,
   "name": "Martelo de Thor"
