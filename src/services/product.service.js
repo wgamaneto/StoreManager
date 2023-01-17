@@ -7,8 +7,8 @@ const getProduct = async () => {
 
 const getProductById = async (id) => {
   const result = await productModel.getProductById(id);
-
   if (!result) return { type: 404, message: 'Product not found' };
+
   return { type: null, message: result };
 };
 
@@ -23,16 +23,16 @@ const insertProduct = async (name) => {
   return { type: null, message: result };
 };
 
-const updateProduct = async (ids, name) => {
-  const id = Number(ids);
+const updateProduct = async (idString, name) => {
+  const id = Number(idString);
   const { type } = await getProductById(id);
   if (type) return { type: 404, message: 'Product not found' };
   const result = await productModel.updateProduct(id, name);
   return { type: null, message: result };
 };
 
-const deleteProduct = async (ids) => {
-  const id = Number(ids);
+const deleteProduct = async (idString) => {
+  const id = Number(idString);
 
   const { type } = await getProductById(id);
   if (type) return { type: 404, message: 'Product not found' };

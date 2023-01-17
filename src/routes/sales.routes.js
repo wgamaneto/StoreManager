@@ -4,10 +4,10 @@ const { validateSaleInputs, validateSalesValues } = require('../middlewares/vali
 
 const salesRouter = express.Router();
 
+salesRouter.get('/', salesController.getSales);
+salesRouter.get('/:id', salesController.getSaleById);
 salesRouter.post('/', validateSaleInputs, validateSalesValues, salesController.insertSale);
 salesRouter.put('/:id', validateSaleInputs, validateSalesValues, salesController.updateSale);
 salesRouter.delete('/:id', salesController.deleteSale);
-salesRouter.get('/', salesController.getSales);
-salesRouter.get('/:id', salesController.getSaleById);
 
 module.exports = salesRouter;
