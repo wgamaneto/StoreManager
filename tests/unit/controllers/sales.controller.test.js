@@ -14,6 +14,7 @@ const { sales,
 
 describe('controller sales', function () {
   it('lista de vendas', async function () {
+    // console.log(sales);
     sinon.stub(salesService, 'getSale').resolves({ type: null, message: sales });
 
     const req = {};
